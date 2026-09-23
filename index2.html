@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Personal portfolio showcasing web design, development, and AI projects."
+  />
+  <title>Your Name — Web Design, Development & AI</title>
+
+<style>
+    :root {
+      --bg: #f4f1eb;
+      --surface: #ffffff;
+      --text: #151515;
+      --muted: #706d67;
+      --line: #d9d5cd;
+      --accent: #d9ff45;
+      --dark: #171717;
+      --radius: 22px;
+      --max-width: 1180px;
+    }
+
+* {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+html {
+      scroll-behavior: smooth;
+    }
+
+body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+
+a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+img {
+      display: block;
+      max-width: 100%;
+    }
+
+.container {
+      width: min(100% - 40px, var(--max-width));
+      margin-inline: auto;
+    }
+
+.eyebrow {
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+.button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid var(--dark);
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+.button:hover {
+      background: var(--dark);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+.button-dark {
+      background: var(--dark);
+      color: white;
+    }
+
+.button-dark:hover {
+      background: transparent;
+      color: var(--dark);
+    }
+
+/* Navigation */
+
+.navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 25px 0;
+    }
+
+.logo {
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+.nav-links {
+      display: flex;
+      gap: 28px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+.nav-links a {
+      transition: color 0.2s ease;
+    }
+
+.nav-links a:hover {
+      color: var(--text);
+    }
+
+.menu-button {
+      display: none;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+/* Hero */
+
+.hero {
+      min-height: 78vh;
+      display: grid;
+      align-items: center;
+      padding: 90px 0 110px;
+    }
+
+.hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 60px;
+      align-items: end;
+    }
+
+.hero h1 {
+      max-width: 850px;
+      margin: 18px 0 28px;
+      font-size: clamp(3.6rem, 9vw, 8.6rem);
+      font-weight: 800;
+      letter-spacing: -0.09em;
+      line-height: 0.88;
+    }
+
+.hero-description {
+      max-width: 470px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+.hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+.hero-card {
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--accent);
+      border-radius: var(--radius);
+      padding: 26px;
+      transform: rotate(2deg);
+    }
+
+.hero-card-number {
+      align-self: flex-end;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+.hero-card-title {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.07em;
+      line-height: 0.9;
+    }
+
+.hero-card-footer {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid rgba(0, 0, 0, 0.25);
+      padding-top: 14px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+/* Sections */
+
+section {
+      padding: 110px 0;
+      border-top: 1px solid var(--line);
+    }
+
+.section-heading {
+      display: grid;
+      grid-template-columns: 0.5fr 1fr;
+      gap: 30px;
+      margin-bottom: 55px;
+    }
+
+.section-heading h2 {
+      max-width: 700px;
+      font-size: clamp(2.5rem, 6vw, 5.5rem);
+      letter-spacing: -0.08em;
+      line-height: 0.9;
+    }
+
+/* Projects */
+
+.projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+.project {
+      overflow: hidden;
+      background: var(--surface);
+      border-radius: var(--radius);
+    }
+
+.project-visual {
+      min-height: 330px;
+      display: flex;
+      align-items: end;
+      padding: 25px;
+      background: #c7c2ba;
+    }
+
+.project:nth-child(2) .project-visual {
+      background: #a8b9ff;
+    }
+
+.project:nth-child(3) .project-visual {
+      background: #ffc878;
+    }
+
+.project:nth-child(4) .project-visual {
+      background: #c7f3dc;
+    }
+
+.project-window {
+      width: 100%;
+      min-height: 210px;
+      padding: 16px;
+      background: #202020;
+      border-radius: 14px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
+    }
+
+.window-bar {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 18px;
+    }
+
+.window-bar span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ff6868;
+    }
+
+.window-bar span:nth-child(2) {
+      background: #ffd166;
+    }
+
+.window-bar span:nth-child(3) {
+      background: #7ae582;
+    }
+
+.window-content {
+      display: grid;
+      gap: 12px;
+    }
+
+.window-line {
+      height: 13px;
+      width: 72%;
+      border-radius: 4px;
+      background: #eeeeee;
+    }
+
+.window-line.small {
+      width: 42%;
+      background: #777777;
+    }
+
+.window-blocks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+.window-blocks div {
+      height: 75px;
+      border-radius: 6px;
+      background: var(--accent);
+    }
+
+.window-blocks div:nth-child(2) {
+      background: #a8b9ff;
+    }
+
+.window-blocks div:nth-child(3) {
+      background: #ffc878;
+    }
+
+.project-info {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px;
+    }
+
+.project-info h3 {
+      font-size: 1.25rem;
+    }
+
+.project-info p {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+.project-number {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+/* About */
+
+.about-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 70px;
+    }
+
+.about-text {
+      max-width: 650px;
+      font-size: clamp(1.5rem, 3vw, 2.8rem);
+      letter-spacing: -0.05em;
+      line-height: 1.05;
+    }
+
+.about-text span {
+      color: var(--muted);
+    }
+
+.skills {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+    }
+
+.skill {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.95rem;
+    }
+
+.skill:nth-child(odd) {
+      margin-right: 25px;
+    }
+
+/* Contact */
+
+.contact {
+      background: var(--dark);
+      color: white;
+    }
+
+.contact .eyebrow {
+      color: #aaa;
+    }
+
+.contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: end;
+    }
+
+.contact h2 {
+      max-width: 700px;
+      margin-top: 18px;
+      font-size: clamp(3.2rem, 8vw, 8rem);
+      letter-spacing: -0.09em;
+      line-height: 0.85;
+    }
+
+.contact-details {
+      justify-self: end;
+    }
+
+.contact-details p {
+      margin-bottom: 22px;
+      color: #b9b9b9;
+    }
+
+.contact .button {
+      border-color: white;
+    }
+
+.contact .button:hover {
+      background: white;
+      color: var(--dark);
+    }
+
+/* Footer */
+
+footer {
+      background: var(--dark);
+      color: #aaa;
+      padding: 25px 0;
+      border-top: 1px solid #3b3b3b;
+      font-size: 0.8rem;
+    }
+
+.footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+/* Responsive */
+
+@media (max-width: 800px) {
+      .container {
+        width: min(100% - 30px, var(--max-width));
+      }
+
+.nav-links {
+        position: absolute;
+        top: 76px;
+        left: 15px;
+        right: 15px;
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 15px;
+      }
+
+.nav-links.active {
+        display: flex;
+      }
+
+.nav-links a {
+        padding: 13px;
+      }
+
+.menu-button {
+        display: block;
+      }
+
+.hero {
+        min-height: auto;
+        padding: 70px 0 90px;
+      }
+
+.hero-grid,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+.hero h1 {
+        font-size: clamp(3.6rem, 17vw, 7rem);
+      }
+
+.hero-card {
+        min-height: 260px;
+      }
+
+.section-heading {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-bottom: 35px;
+      }
+
+section {
+        padding: 80px 0;
+      }
+
+.projects {
+        grid-template-columns: 1fr;
+      }
+
+.project-visual {
+        min-height: 270px;
+      }
+
+.contact-details {
+        justify-self: start;
+      }
+
+.footer-content {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="container">
+    <nav class="navbar">
+      <a href="#top" class="logo">YOUR NAME®</a>
+
+<div class="nav-links" id="navLinks">
+        <a href="#work">Work</a>
+        <a href="#about">About<a href="portfolio.html">Wapas Portfolio Par</a></a>
+        <a href="#contact">Contact</a>
+      </div>
+
+<button class="menu-button" id="menuButton" aria-label="Open menu">
+        ☰
+      </button>
+    </nav>
+  </header>
+
+<main id="top">
+    <section class="hero container">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">01 — Personal Portfolio</p>
+
+<h1>
+            Web Design<br />
+            Development<br />
+            & AI
+          </h1>
+
+<p class="hero-description">
+            I create thoughtful digital experiences through visual design,
+            clean development, and intelligent technology.
+          </p>
+
+<div class="hero-actions">
+            <a href="#work" class="button button-dark">View my work ↗</a>
+            <a href="#contact" class="button">Let's connect</a>
+          </div>
+        </div>
+
+<div class="hero-card">
+          <span class="hero-card-number">Available for selected projects</span>
+
+<strong class="hero-card-title">
+            Digital<br />
+            experiences<br />
+            with purpose.
+          </strong>
+
+<div class="hero-card-footer">
+            <span>India / Worldwide</span>
+            <span>2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section id="work">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">02 — Selected work</p>
+          <h2>Ideas turned into useful digital products.</h2>
+        </div>
+
+<div class="projects">
+          <article class="project">
+            <div class="project-visual">
+              <div class="project-window">
+                <div class="window-bar">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="window-content">
+                  <div class="window-line"></div>
+                  <div class="window-line small"></div>
+                  <div class="window-blocks">
+                    <div></div><div></div><div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<div class="project-info">
+              <div>
+                <h3>Project One</h3>
+                <p>Brand website / Web design</p>
+              </div>
+              <span class="project-number">01</span>
+            </div>
+          </article>
+
+<article class="project">
+            <div class="project-visual">
+              <div class="project-window">
+                <div class="window-bar">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="window-content">
+                  <div class="window-line"></div>
+                  <div class="window-line small"></div>
+                  <div class="window-blocks">
+                    <div></div><div></div><div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<div class="project-info">
+              <div>
+                <h3>Project Two</h3>
+                <p>Responsive platform / Development</p>
+              </div>
+              <span class="project-number">02</span>
+            </div>
+          </article>
+
+<article class="project">
+            <div class="project-visual">
+              <div class="project-window">
+                <div class="window-bar">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="window-content">
+                  <div class="window-line"></div>
+                  <div class="window-line small"></div>
+                  <div class="window-blocks">
+                    <div></div><div></div><div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<div class="project-info">
+              <div>
+                <h3>Project Three</h3>
+                <p>AI assistant / Product concept</p>
+              </div>
+              <span class="project-number">03</span>
+            </div>
+          </article>
+
+<article class="project">
+            <div class="project-visual">
+              <div class="project-window">
+                <div class="window-bar">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="window-content">
+                  <div class="window-line"></div>
+                  <div class="window-line small"></div>
+                  <div class="window-blocks">
+                    <div></div><div></div><div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<div class="project-info">
+              <div>
+                <h3>Project Four</h3>
+                <p>Portfolio experience / Creative coding</p>
+              </div>
+              <span class="project-number">04</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+<section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">03 — About me</p>
+          <h2>Design-minded. Technically curious.</h2>
+        </div>
+
+<div class="about-grid">
+          <p class="about-text">
+            I’m <span>Your Name</span>, a designer and developer focused on
+            creating digital products that are clear, engaging, and easy to use.
+          </p>
+
+<div class="skills">
+            <div class="skill">01 — UI/UX Design</div>
+            <div class="skill">02 — Front-end Development</div>
+            <div class="skill">03 — Responsive Websites</div>
+            <div class="skill">04 — AI Prototyping</div>
+            <div class="skill">05 — Creative Direction</div>
+            <div class="skill">06 — Design Systems</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section id="contact" class="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div>
+            <p class="eyebrow">04 — Get in touch</p>
+            <h2>Have a project in mind?</h2>
+          </div>
+
+<div class="contact-details">
+            <p>
+              Tell me about your idea, product, or collaboration opportunity.
+            </p>
+            <a
+              href="mailto:hello@yourname.com"
+              class="button"
+            >
+              hello@yourname.com ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<footer>
+    <div class="container footer-content">
+      <span>© 2026 Your Name</span>
+      <span>Web Design • Development • AI</span>
+    </div>
+  </footer>
+
+<script>
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+
+menuButton.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+  </script>
+</body>
+</html>
